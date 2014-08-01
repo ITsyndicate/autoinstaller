@@ -119,7 +119,9 @@ host    all             all             $APPIP2/32           md5
 host    replication     repl            $BACKUPIP/32           md5" >> /etc/postgresql/9.3/main/pg_hba.conf
   /usr/bin/service postgresql stop
   scp backups@$BACKUPIP:/home/backups/uts24-sql-live/postgre/base/latest.tar.gz $TMPPATH/
+  mkdir /var/lib/postgresql/.ssh
   cp /root/.ssh/known_hosts /var/lib/postgresql/.ssh/
+  chown -R postgres.postgres /var/lib/postgresql/.ssh
   rm -rf /var/lib/postgresql/9.3/main/*
   tar -xzf $TMPPATH/latest.tar.gz -C /var/lib/postgresql/9.3/main/
   rm $TMPPATH/latest.tar.gz
@@ -172,7 +174,9 @@ host    all             all             $APPIP2/32           md5
 host    replication     repl            $BACKUPIP/32           md5" >> /etc/postgresql/9.3/main/pg_hba.conf
   /usr/bin/service postgresql stop
   scp backups@$BACKUPIP:/home/backups/dict-sql-live/postgre/base/latest.tar.gz $TMPPATH/
+  mkdir /var/lib/postgresql/.ssh
   cp /root/.ssh/known_hosts /var/lib/postgresql/.ssh/
+  chown -R postgres.postgres /var/lib/postgresql/.ssh
   rm -rf /var/lib/postgresql/9.3/main/*
   tar -xzf $TMPPATH/latest.tar.gz -C /var/lib/postgresql/9.3/main/
   rm $TMPPATH/latest.tar.gz
